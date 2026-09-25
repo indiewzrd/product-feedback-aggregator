@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:product-feedback-aggregator:input-schema:v1",
+  "title": "Product Feedback Aggregator input",
+  "description": "A JSON array, a records wrapper, or one canonical NDJSON record.",
+  "anyOf": [
+    {"$ref": "#/$defs/record"},
+    {"type": "array", "items": {"$ref": "#/$defs/record"}},
+    {
+      "type": "object",
+      "required": ["records"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "records": {"type": "array", "items": {"$ref": "#/$defs/record"}}
+      },
+      "additionalProperties": false
+    }
+  ],
+  "$defs": {
+    "record": {
+      "type": "object",
+      "required": ["text"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "id": {
+          "oneOf": [
+            {"type": "string", "maxLength": 512},
+            {"type": "number"}
+          ]
+        },
+        "text": {"type": "string", "minLength": 1, "maxLength": 200000},
+        "url": {"type": "string", "maxLength": 4096},
+        "created_at": {"type": "string", "format": "date-time", "maxLength": 64},
+        "author": {
+          "oneOf": [
+            {"type": "string", "maxLength": 4096},
+            {"type": "number"},
+            {"type": "null"}
+          ]
+        },
+        "engagement": {
+          "type": "object",
+          "propertyNames": {"minLength": 1, "maxLength": 128},
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000000000
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "propertyNames": {
+            "minLength": 1,
+            "maxLength": 128,
+            "not": {"enum": ["created_at_inferred", "input_location"]}
+          },
+          "additionalProperties": {
+            "oneOf": [
+              {"type": "string", "maxLength": 4096},
+              {"type": "number"},
+              {"type": "boolean"},
+              {"type": "null"}
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

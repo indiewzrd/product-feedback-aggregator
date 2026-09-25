@@ -1,0 +1,70 @@
+version: 1
+
+product:
+  name: Acme Notes
+  aliases:
+    - Acme
+  terms:
+    - note
+    - notebook
+    - editor
+    - sync
+    - search
+    - export
+  exclusions:
+    - hiring
+    - stock price
+  languages:
+    - en
+
+storage:
+  path: ../.feedback/example.db
+
+privacy:
+  author_salt_file: ../.feedback/author_salt
+
+limits:
+  max_items_per_source: 1000
+  max_file_bytes: 10485760
+  max_line_bytes: 1048576
+  max_url_bytes: 2097152
+  max_decompressed_bytes: 4194304
+  connect_timeout_seconds: 5
+  read_timeout_seconds: 15
+  total_timeout_seconds: 30
+  max_redirects: 3
+  external_timeout_seconds: 60
+  external_output_bytes: 10485760
+
+analysis:
+  relevance_threshold: 0.35
+  suppression_threshold: 0.80
+  cluster_similarity_threshold: 0.42
+  weights:
+    authors: 0.28
+    sources: 0.17
+    recency: 0.15
+    severity: 0.18
+    relevance: 0.17
+    engagement: 0.05
+
+outputs:
+  directory: ../reports
+
+sources:
+  - id: sample-json
+    type: json
+    enabled: true
+    max_items: 100
+    options:
+      paths:
+        - feedback.json
+    policy:
+      acquisition_mode: user_file
+      approval_required: false
+      approval_reference: Local synthetic example
+      remote_processing_allowed: false
+      raw_ttl_hours: 0
+      redistribution_mode: local_only
+      policy_version: local-v1
+      policy_version_checked_at: "2026-09-25"

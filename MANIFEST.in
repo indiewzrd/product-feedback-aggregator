@@ -1,0 +1,12 @@
+include AGENTS.md
+include LICENSE
+include README.md
+include SECURITY.md
+recursive-include .agents *.md
+recursive-include .claude *.md
+recursive-include docs *.md
+exclude docs/*.docx
+recursive-include examples *.json *.yml
+recursive-include schemas *.json
+recursive-include tests *.py
+global-exclude .DS_Store *.py[cod]

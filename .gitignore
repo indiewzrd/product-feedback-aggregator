@@ -1,0 +1,25 @@
+# Local application state and sensitive outputs
+.feedback/
+reports/
+feedback.yml
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.coverage
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+build/
+dist/
+
+# Local credentials and editor files
+.env
+.env.*
+!.env.example
+.DS_Store
+.idea/
+.vscode/
