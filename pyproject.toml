@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools==84.0.0"]
+requires = ["setuptools==84.2.1"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -28,11 +28,11 @@ classifiers = [
 [project.optional-dependencies]
 dev = [
   "build==1.6.1",
-  "jsonschema==4.25.1",
-  "mypy==2.3.1",
+  "jsonschema==4.26.0",
+  "mypy==2.4.0",
   "pip-audit==2.10.1",
   "pytest==9.1.1",
-  "ruff==0.16.9",
+  "ruff==0.17.2",
   "types-PyYAML==6.0.12.20260906",
 ]
 
